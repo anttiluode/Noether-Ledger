@@ -4,6 +4,21 @@ Noether's theorem applied to a transformer, measured rather than argued.
 A 1-layer, 1-head transformer with a ReLU MLP (numpy, hand-written backprop, gradcheck 4e-6) learns
 Fibonacci mod 17 (x_t = x_{t-1} + x_{t-2}). It trains on 200 of the 289 possible sequences, and the other 89 are held out.
 
+## Status: a replication, not a discovery
+
+This repo is a correct, from-scratch, numerically verified reproduction of known results from roughly 2018–2022. Nothing here is new. Each part maps to existing work:
+
+| result here | already known from |
+|---|---|
+| Weight-symmetry charges conserved under gradient flow; SGD, momentum, Adam and weight decay break them, including the finite-learning-rate (lr²) breaking that `check_identity.py` checks | Kunin et al., *Neural Mechanics: Symmetry and Broken Conservation Laws in Deep Learning Dynamics*, ICLR 2021 ([arXiv:2012.04728](https://arxiv.org/abs/2012.04728)) |
+| Balancedness appearing without a regulariser | Du, Hu & Lee, *Algorithmic Regularization in Learning Deep Homogeneous Models*, NeurIPS 2018 |
+| Exp 2: imbalanced (non-balanced gauge) init trains faster; the conserved imbalance sets the speed | Min, Tarmoun, Vidal & Mallada, ICML 2021 ([arXiv:2105.06351](https://arxiv.org/abs/2105.06351)) |
+| Using the gauge freedom deliberately to speed up training | Zhao et al., *Symmetry Teleportation for Accelerated Optimization*, 2022 |
+| Charge drift as a learning-event detector | Not new in substance. By the identity, drift per step = lr² × a difference of gradient Gram matrices, so it is a gradient-norm signal in disguise, and gradient norms spiking at phase transitions (e.g. grokking) is well known |
+| Exp 3: measuring how equivariant a trained network is | Gruver et al., *The Lie Derivative for Measuring Learned Equivariance*, 2022; small transformers on modular arithmetic: Nanda et al. on grokking, 2023 |
+
+The repo started from a question prompted by an Instagram post about Emmy Noether ("is there token symmetry?"). It is kept as a worked, runnable illustration of what Noether's theorem does and does not mean inside a neural network.
+
 ## Weight space: real Noether charges
 
 Three continuous symmetries leave the network function unchanged:
@@ -63,7 +78,7 @@ Under SGD the gauge is invisible to the function but not to learning. The balanc
 
 ## Honest limits
 
-These results come from one task, one architecture and one seed per config, so the n=5 correlation in exp 3 is suggestive only. Exp 2 compares runs at a fixed step budget, not at convergence. Transformers have no action, so the charges belong to the optimizer flow, not to the forward pass.
+See "Status" above: the results are known, not new. On top of that, these results come from one task, one architecture and one seed per config, so the n=5 correlation in exp 3 is suggestive only. Exp 2 compares runs at a fixed step budget, not at convergence. Transformers have no action, so the charges belong to the optimizer flow, not to the forward pass.
 
 ## Run
 
