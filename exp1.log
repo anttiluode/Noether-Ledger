@@ -1,0 +1,6 @@
+SGD lr=1e-2          loss 2.791 acc tr/te 0.10/0.02 | QK rel drift 2.1e-07 (|C|/scale 0.43->0.43) | VO rel drift 2.7e-06 (|C|/scale 0.51->0.51) | MLP rel drift 1.8e-06 (|C|/scale 0.37->0.36)
+SGD lr=1e-1          loss 0.248 acc tr/te 1.00/0.98 | QK rel drift 1.6e-04 (|C|/scale 0.43->0.22) | VO rel drift 3.4e-02 (|C|/scale 0.51->0.22) | MLP rel drift 1.3e-02 (|C|/scale 0.37->0.17)
+SGD lr=3e-1          loss 0.234 acc tr/te 1.00/1.00 | QK rel drift 1.5e-03 (|C|/scale 0.43->0.20) | VO rel drift 9.4e-02 (|C|/scale 0.51->0.22) | MLP rel drift 5.0e-02 (|C|/scale 0.37->0.15)
+SGD+mom lr=3e-2      loss 0.225 acc tr/te 1.00/0.98 | QK rel drift 8.6e-03 (|C|/scale 0.43->0.22) | VO rel drift 3.9e-03 (|C|/scale 0.51->0.19) | MLP rel drift 3.7e-03 (|C|/scale 0.37->0.16)
+Adam lr=3e-3         loss 0.226 acc tr/te 1.00/0.94 | QK rel drift 1.3e-01 (|C|/scale 0.43->0.18) | VO rel drift 1.3e-01 (|C|/scale 0.51->0.27) | MLP rel drift 9.1e-02 (|C|/scale 0.37->0.13)
+AdamW lr=3e-3 wd=.1  loss 0.225 acc tr/te 1.00/0.99 | QK rel drift 1.6e-01 (|C|/scale 0.43->0.13) | VO rel drift 2.7e-01 (|C|/scale 0.51->0.17) | MLP rel drift 2.4e-01 (|C|/scale 0.37->0.20)
